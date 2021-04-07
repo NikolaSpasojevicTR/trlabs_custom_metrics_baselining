@@ -5,7 +5,6 @@ import json
 import os
 import traceback
 import csv
-import argparse
 from types import SimpleNamespace
 
 from constraints import Constraints
@@ -60,14 +59,14 @@ def get_environment():
             "THRESHOLD",
             defaults.get("THRESHOLD", "nan"))
         ),
+        baseline_dataset_name=os.environ.get(
+            'baseline_dataset_name',
+            defaults.get('baseline_dataset_name', '')
+        )
     )
 
 
 if __name__ == "__main__":
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--baseline_dataset_name', type=str)
-    args, _ = parser.parse_known_args()
 
     env = get_environment()
     print(f"Starting baselining with config:\n{env}")
@@ -78,10 +77,7 @@ if __name__ == "__main__":
     y_true = []
     y_pred = []
 
-    dataset_source = env.dataset_source
-    print(dataset_source)
-
-    with open(os.path.join(dataset_source, args.baseline_dataset_name), "r") as file:
+    with open(os.path.join(env.dataset_source, env.baseline_dataset_name), "r") as file:
         reader = csv.DictReader(file)
         for row in reader:
             total_record_count += 1
