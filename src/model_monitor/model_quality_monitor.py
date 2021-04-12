@@ -46,3 +46,9 @@ class TrModelQualityMonitor:
             output_s3_uri=aws_config.baseline_results_uri,  # output of merge job
             schedule_cron_expression=CronExpressionGenerator.hourly(),  # the merge job will be run once every hour!
         )
+
+
+if __name__ == '__main__':
+    tr_model_quality_monitor = TrModelQualityMonitor()
+    tr_model_quality_monitor.suggest_baseline()
+    tr_model_quality_monitor.create_monitoring_schedule()
