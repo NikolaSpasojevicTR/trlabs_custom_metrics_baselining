@@ -1,5 +1,5 @@
 from sagemaker.model_monitor import ModelMonitor,CronExpressionGenerator, MonitoringOutput
-from sagemaker.model_monitor.monitoring_files import Constraints
+from sagemaker.model_monitor.monitoring_files import Constraints, Statistics
 from sagemaker.processing import ProcessingInput, ProcessingOutput
 import config.aws as aws_config
 
@@ -53,4 +53,5 @@ class ModelQualityMonitor:
             schedule_cron_expression=CronExpressionGenerator.hourly(),
             # replace with your baseline constraints and statistics files
             constraints=Constraints.from_s3_uri(constraints_file_s3_uri=aws_config.constraints_file_s3_uri), # utilise the constraints file (generated from the baseline job) to run a monitoring job
+            statistics=Statistics.from_s3_uri(statistics_file_s3_uri=aws_config.statistics_file_s3_uri)
         )
