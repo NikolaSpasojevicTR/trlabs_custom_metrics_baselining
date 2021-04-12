@@ -3,7 +3,7 @@ from config.env_var import env
 from sagemaker.processing import Processor, ProcessingInput, ProcessingOutput
 
 
-def manual_monitor_process():
+def manual_model_monitor_process():
     # instead of waiting for an hour, we can manually start the processing job to already get some analysis results.
     # To do this we define a Processor object that takes the image URI of our custom image.
     # The input for our job will be the S3 location where captured inference requests and responses are stored,
@@ -34,6 +34,6 @@ def manual_monitor_process():
 
 
 if __name__ == '__main__':
-    manual_monitor_process()
+    manual_model_monitor_process()
 
 
