@@ -12,7 +12,7 @@ profile = {
 
 # workspace
 workspace_id = 'ModelDrift'
-role = 
+role =
 region = boto3.Session().region_name
 bucket = 'a204311-scw-euw1-modeldrift'
 
